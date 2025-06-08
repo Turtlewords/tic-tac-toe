@@ -13,6 +13,9 @@
     --blue-400: #31C3BD;
     --blue-500: #20918d;
 
+
+        /* silver: 168, 191, 201 */
+        /* dark navy: 31, 54, 65 */
 }
 
 @font-face {
@@ -40,7 +43,7 @@ main {
 #hero {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: .5rem;
 }
 
 #pick-container {
@@ -57,6 +60,10 @@ main {
 #selecter {
     background-color: var(--navy-950);
     padding: .5rem;
+    border-radius: 8px;
+    width: 90%;
+    display: flex;
+
 }
 
 #button-container {
@@ -88,6 +95,11 @@ main {
     letter-spacing: 1px;
 }
 
+.btn:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
 
 /* Typography */
 
@@ -109,3 +121,22 @@ main {
 img {
     max-width: 100%;
 }
+
+.icon {
+    width: 40px;
+}
+
+#select-x {
+    padding: .5rem;
+    flex: 1;
+    height: 65px;
+}
+
+#select-o {
+    padding: .5rem;
+    background-color: var(--grey-400);
+    flex: 1;
+    height: 65px;
+    border-radius: 8px;
+}
+
