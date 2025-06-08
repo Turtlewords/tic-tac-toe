@@ -1,0 +1,24 @@
+:root {
+
+    /* Colors */
+    --grey-100: #DBE8ED;
+    --grey-400: #A8BFC9;
+    --grey-800: #1F3641;
+    --grey-950: #1A2A33;
+    --orange-200: #FFC860;
+    --orange-500: #F2B137;
+    --green-200: #65E9E4;
+    --gren-400: #31C3BD;
+
+}
+
+@font-face {
+    font-family: "Outfit";
+    src: url("assets/fonts/Outfit-VariableFont_wght.ttf");
+}
+
+body {
+    margin: 0;
+    font-family: "Outfit", "Helvetica", "sans-serif";
+    background-color: var(--grey-800);
+}
