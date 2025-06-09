@@ -3,6 +3,7 @@
     /* Colors */
     --grey-100: #DBE8ED;
     --grey-400: #A8BFC9;
+    --grey-700: #647075;
     --navy-800: #1F3641;
     --navy-950: #1A2A33;
     --navy-1000: #111b22;
@@ -101,6 +102,35 @@ main {
 }
 
 
+
+/* New Game Solo */
+
+#header-el {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#turn-container {
+    background-color: #1F3641;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    border-radius: 12px;
+    padding: .5rem;
+}
+
+#turn {
+    display: flex;
+    align-items: center;
+}
+
+#restart-btn {
+    background-color: var(--grey-400);
+    box-shadow: 0 10px var(--grey-700);
+}
+
+
 /* Typography */
 
 #pick-player {
@@ -115,6 +145,12 @@ main {
     letter-spacing: 1px;
 }
 
+#turn-container p {
+    color: var(--grey-400);
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 0;
+}
 
 /* Images */
 
@@ -124,6 +160,10 @@ img {
 
 .icon {
     width: 40px;
+}
+
+.turn-icon {
+    width: 25px;
 }
 
 #select-x {
