@@ -38,7 +38,7 @@ main {
     justify-content: center;
     /* align-items: center; */
     gap: 2rem;
-    padding: 2rem;
+    padding: 1.5rem;
 }
 
 #hero {
@@ -105,10 +105,18 @@ main {
 
 /* New Game Solo */
 
+#solo-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
 #header-el {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 4rem;
 }
 
 #turn-container {
@@ -131,12 +139,14 @@ main {
 }
 
 #game-board {
-    width: 90vw;
-    height: 90vw;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .tile {
@@ -146,7 +156,7 @@ main {
 }
 
 #scoreboard {
-    width: 90vw;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
@@ -155,6 +165,7 @@ main {
 
 .scoreboard-el {
     border-radius: 12px;
+    padding: 1rem;
 }
 
 #x-box {
@@ -191,6 +202,10 @@ main {
     color: var(--grey-400);
     font-weight: 600;
     letter-spacing: 1px;
+    margin: 0;
+}
+
+.scoreboard-el p {
     margin: 0;
 }
 
