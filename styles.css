@@ -130,6 +130,48 @@ main {
     box-shadow: 0 10px var(--grey-700);
 }
 
+#game-board {
+    width: 90vw;
+    height: 90vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.tile {
+    background-color: var(--navy-800);
+    box-shadow: 0 10px var(--navy-1000);
+    border-radius: 12px;
+}
+
+#scoreboard {
+    width: 90vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+
+}
+
+.scoreboard-el {
+    border-radius: 12px;
+}
+
+#x-box {
+    background-color: var(--blue-200);
+    
+}
+
+#ties-box {
+    background-color: var(--grey-400);
+    
+}
+
+#o-box {
+    background-color: var(--yellow-500);
+    
+}
+
 
 /* Typography */
 

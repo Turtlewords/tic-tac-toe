@@ -1,4 +1,6 @@
 <div id="solo-container">
+
+  <!-- Header -->
     <div id="header-el">
       <div id="hero">
         <img src="assets/images/icon-x.svg" alt="x icon" class="icon">
@@ -11,5 +13,34 @@
         <p>TURN</p>
       </div>
       <img id="restart-btn" src="assets/images/icon-restart.svg" alt="restart" class="btn">
+    </div>
+
+    <!-- Game board -->
+
+    <div id="game-board">
+      <div id="tile-one" class="tile" data-val="1"></div>
+      <div id="tile-two" class="tile" data-val="2"></div>
+      <div id="tile-three" class="tile" data-val="3"></div>
+      <div id="tile-four" class="tile" data-val="4"></div>
+      <div id="tile-five" class="tile" data-val="5"></div>
+      <div id="tile-six" class="tile" data-val="6"></div>
+      <div id="tile-seven" class="tile" data-val="7"></div>
+      <div id="tile-eight" class="tile" data-val="8"></div>
+      <div id="tile-nine" class="tile" data-val="9"></div>
+    </div>
+
+    <div id="scoreboard">
+      <div id="x-box" class="scoreboard-el">
+        <p>X (<span id="x-span"></span>)</p>
+        <p id="x-score"></p>
+      </div>
+      <div id="ties-box" class="scoreboard-el">
+        <p>TIES</p>
+        <p id="total-ties"></p>
+      </div>
+      <div id="o-box" class="scoreboard-el">
+        <p>&#9711 (<span id="o-span"></span>)</p>
+        <p id="o-score"></p>
+      </div>
     </div>
 </div>
