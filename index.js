@@ -1,6 +1,10 @@
 // Variables
 
 let player1Mark;
+let xScore = 0;
+let oScore = 0;
+let ties = 0;
+let currentTurn = "X";
 
 // Main Menu Elements
 
@@ -40,11 +44,22 @@ const tiles = document.querySelectorAll(".tile");
 
 
 
-// Solo Game Event Listeners
+// Game Board Event Listeners
 
 restartBtn.addEventListener("click", confirmRestartGame);
 cancelRestartBtn.addEventListener("click", cancelRestartGame);
 confirmRestartBtn.addEventListener("click", restartGame);
+tiles.forEach((tile) => {
+    tile.addEventListener("click", (e) => {
+        if (currentTurn == "X") {
+            e.target.innerHTML = `<img src="assets/images/icon-x.svg" alt="x icon" class="icon">`
+        } else {
+            e.target.innerHTML = `
+            <img src="assets/images/icon-o.svg" alt="o icon" class="icon">`
+        }
+        
+    })
+})
 
 // Functions
 
@@ -54,13 +69,16 @@ function confirmRestartGame() {
 
 function cancelRestartGame() {
     confirmRestartEl.style.display = "none";
+    
 }
 
 function restartGame() {
 
     
     confirmRestartEl.style.display = "none";
-    
+    boardContainer.style.display = "none";
+    mainMenu.style.display = "flex";
+    player1Mark = "";
 
     turnEl.innerHTML = `
     <img src="assets/images/xmark-solid.svg" class="turn-icon" alt="">`
@@ -69,4 +87,6 @@ function restartGame() {
         tile.innerHTML = "";
     })
 }
+
+
 
