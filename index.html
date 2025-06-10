@@ -10,7 +10,9 @@
 </head>
 <body>
   <main>
-     
+
+    <!-- New game menu start -->
+     <div id="main-menu">
       <div id="hero">
         <img src="assets/images/icon-x.svg" alt="x icon" class="icon">
         <img src="assets/images/icon-o.svg" alt="o icon" class="icon">
@@ -27,20 +29,89 @@
         <button id="vs-cpu" class="btn">New Game (vs CPU)</button>
         <button id="vs-player" class="btn">New Game (vs player)</button>
       </div>
+    </div>
+
+    <!-- New game menu end -->
+
+    <!-- Game board start -->
+
+    <div id="board-container">
+
+  <!-- Header -->
+    <div id="header-el">
+      <div id="hero">
+        <img src="assets/images/icon-x.svg" alt="x icon" class="icon">
+        <img src="assets/images/icon-o.svg" alt="o icon" class="icon">
+      </div>
+      <div id="turn-container">
+        <div id="turn">
+            <img src="assets/images/xmark-solid.svg" class="turn-icon" alt="">
+        </div>
+        <p>TURN</p>
+      </div>
+      <img id="restart-btn" src="assets/images/icon-restart.svg" alt="restart" class="btn">
+    </div>
+
+    <!-- Game board -->
+
+    <div id="game-board">
+      <div id="tile-one" class="tile" data-val="1"></div>
+      <div id="tile-two" class="tile" data-val="2"></div>
+      <div id="tile-three" class="tile" data-val="3"></div>
+      <div id="tile-four" class="tile" data-val="4"></div>
+      <div id="tile-five" class="tile" data-val="5"></div>
+      <div id="tile-six" class="tile" data-val="6"></div>
+      <div id="tile-seven" class="tile" data-val="7"></div>
+      <div id="tile-eight" class="tile" data-val="8"></div>
+      <div id="tile-nine" class="tile" data-val="9"></div>
+    </div>
+
+    <div id="scoreboard">
+      <div id="x-box" class="scoreboard-el">
+        <p>X (<span id="x-span"></span>)</p>
+        <p id="x-score" class="scores"></p>
+      </div>
+      <div id="ties-box" class="scoreboard-el">
+        <p>TIES</p>
+        <p id="total-ties" class="scores"></p>
+      </div>
+      <div id="o-box" class="scoreboard-el">
+        <p>&#9711 (<span id="o-span"></span>)</p>
+        <p id="o-score" class="scores"></p>
+      </div>
+    </div>
+
+    <!-- Restart Confirm Modal -->
+    <div id="confirm-restart">
+      <div id="confirm-restart-box">
+        <p>RESTART GAME?</p>
+        <div id="confirm-restart-btn-box">
+          <button id="cancel-restart-btn" class="btn">NO, CANCEL</button>
+          <button id="confirm-restart-btn" class="btn">YES, RESTART</button>
+        </div>
+      </div>
+    </div>
+    
+</div>
+
+
 
   </main>
 
-  <!-- New game menu start -->
-
-  
   
 
   
   
 
-  <!-- New game menu end -->
+  
+  
 
-  <!-- Game board start -->
+
+
+  
+
+  
+
 
   <!-- x/o icon --> turn
 
