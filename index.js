@@ -7,6 +7,7 @@ let oScore = 0;
 let ties = 0;
 let currentTurn = "X";
 let soloGame;
+let roundOver = false;
 
 const winCombos = [
     [0, 1, 2], 
@@ -80,7 +81,8 @@ quitBtn.addEventListener("click", restartGame);
 
 tiles.forEach((tile) => {
     tile.addEventListener("click", (e) => {
-        if (currentTurn == "X") {
+        if (!soloGame) {
+            if (currentTurn == "X") {
             e.target.innerHTML = `<img src="assets/images/icon-x.svg" alt="x icon" class="icon">`
             currentTurn = "O"
             turnEl.innerHTML = `<img src="assets/images/o-solid-grey.svg" class="turn-icon" alt="">`
@@ -90,7 +92,18 @@ tiles.forEach((tile) => {
             currentTurn = "X"
             turnEl.innerHTML = `<img src="assets/images/xmark-solid.svg" class="turn-icon" alt="">`
         }
-        e.target.disabled = "true";
+        e.target.disabled = true;
+
+        } else {
+            if (currentTurn == "X") {
+            e.target.innerHTML = `<img src="assets/images/icon-x.svg" alt="x icon" class="icon">`
+            currentTurn = "O"
+            turnEl.innerHTML = `<img src="assets/images/o-solid-grey.svg" class="turn-icon" alt="">`
+            setTimeout(cpuMove, 2000);
+        } 
+        e.target.disabled = true;
+        }
+        
     })
 })
 
@@ -100,6 +113,36 @@ function enableGameboard() {
     tiles.forEach((tile) => {
         tile.disabled = false;
     })
+}
+
+function cpuMove() {
+    let availableCells = [];
+    for (let i = 0; i < tiles.length; i++) {
+        if (!tiles[i].disabled) {
+            availableCells.push(i);
+        }
+    }
+
+    console.log("Avialable cells: " + availableCells);
+    
+    let random = Math.floor(Math.random() * availableCells.length);
+
+    console.log("Random: " + random)
+
+    let index = availableCells[random];
+
+    console.log("Index: " + index)
+
+    if (player1Mark == "X") {
+        tiles[index].innerHTML = `<img src="assets/images/icon-o.svg" alt="o icon" class="icon">`
+        currentTurn = "X"
+        turnEl.innerHTML = `<img src="assets/images/xmark-solid.svg" class="turn-icon" alt="">`
+    } else {
+        tiles[index].innerHTML = `<img src="assets/images/icon-x.svg" alt="x icon" class="icon">`
+        currentTurn = "O"
+        turnEl.innerHTML = `<img src="assets/images/o-solid-grey.svg" class="turn-icon" alt="">`
+    }
+    tiles[index].disabled = true;
 }
 
 
@@ -132,7 +175,7 @@ function restartGame() {
     })
 }
 
-function roundOver() {
+function endRound() {
     if (soloGame) {
         
     }
@@ -145,4 +188,6 @@ function displaySoloWinner(winner) {
 function displayMultiplayerWinner(winner) {
 
 }
+
+
 
