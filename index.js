@@ -1,10 +1,12 @@
 // Variables
 
 let player1Mark;
+let player2Mark;
 let xScore = 0;
 let oScore = 0;
 let ties = 0;
 let currentTurn = "X";
+let soloGame;
 
 const winCombos = [
     [0, 1, 2], 
@@ -26,23 +28,7 @@ const selectO = document.querySelector("#select-o");
 const main = document.querySelector("main");
 const mainMenu = document.querySelector("#main-menu");
 
-// Main Menu Event Listeners
-
-vsCpuBtn.addEventListener("click", () => {
-    mainMenu.style.display = "none";
-    boardContainer.style.display = "flex"
-    
-});
-
-selectX.addEventListener("click", () => {
-    player1Mark = "X";
-})
-
-selectO.addEventListener("click", () => {
-    player1Mark = "O";
-})
-
-// Game Board
+// Game Board Elements
 
 const boardContainer = document.querySelector("#board-container");
 const turnEl = document.querySelector("#turn");
@@ -50,9 +36,35 @@ const restartBtn = document.querySelector("#restart-btn");
 const confirmRestartEl = document.querySelector("#confirm-restart");
 const cancelRestartBtn = document.querySelector("#cancel-restart-btn");
 const confirmRestartBtn = document.querySelector("#confirm-restart-btn");
+const displayWinnerEl = document.querySelector("#display-winner");
+const winnerMessage = document.querySelector("#winner-message");
+const winnerEl = document.querySelector("#winner");
+
+const quitBtn = document.querySelector("#quit-btn");
+const nextRoundBtn = document.querySelector("#next-round-btn");
 
 const tiles = document.querySelectorAll(".tile");
 
+// Main Menu Event Listeners
+
+vsCpuBtn.addEventListener("click", () => {
+    soloGame = true;
+    mainMenu.style.display = "none";
+    boardContainer.style.display = "flex"
+    
+});
+
+selectX.addEventListener("click", () => {
+    player1Mark = "X";
+    selectX.style.backgroundColor = "#31C3BD";
+    selectO.style.backgroundColor = "#A8BFC9";
+})
+
+selectO.addEventListener("click", () => {
+    player1Mark = "O";
+    selectO.style.backgroundColor = "#FFC860";
+    selectX.style.backgroundColor = "#1A2A33";
+})
 
 
 // Game Board Event Listeners
@@ -113,5 +125,17 @@ function restartGame() {
     })
 }
 
+function roundOver() {
+    if (soloGame) {
+        
+    }
+}
 
+function displaySoloWinner(winner) {
+
+}
+
+function displayMultiplayerWinner(winner) {
+
+}
 

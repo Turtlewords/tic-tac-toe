@@ -11,25 +11,25 @@
 <body>
   <main>
 
-    <!-- New game menu start -->
-     <div id="main-menu">
-      <div id="hero">
-        <img src="assets/images/icon-x.svg" alt="x icon" class="icon">
-        <img src="assets/images/icon-o.svg" alt="o icon" class="icon">
-      </div>
-      <div id="pick-container">
-        <p id="pick-player">Pick player 1's mark</p>
-        <div id="selecter">
-          <img id="select-x" src="assets/images/xmark-solid.svg" alt="x" class="icon">
-          <img id="select-o" src="assets/images/o-solid.svg" alt="o" class="icon">
+        <!-- New game menu start -->
+      <div id="main-menu">
+        <div id="hero">
+          <img src="assets/images/icon-x.svg" alt="x icon" class="icon">
+          <img src="assets/images/icon-o.svg" alt="o icon" class="icon">
         </div>
-        <p id="remember">REMEMBER <span id="colon">:</span> X GOES FIRST</p>
+        <div id="pick-container">
+          <p id="pick-player">Pick player 1's mark</p>
+          <div id="selecter">
+            <img id="select-x" src="assets/images/xmark-solid.svg" alt="x" class="icon">
+            <img id="select-o" src="assets/images/o-solid.svg" alt="o" class="icon">
+          </div>
+          <p id="remember">REMEMBER <span id="colon">:</span> X GOES FIRST</p>
+        </div>
+        <div id="button-container">
+          <button id="vs-cpu" class="btn">New Game (vs CPU)</button>
+          <button id="vs-player" class="btn">New Game (vs player)</button>
+        </div>
       </div>
-      <div id="button-container">
-        <button id="vs-cpu" class="btn">New Game (vs CPU)</button>
-        <button id="vs-player" class="btn">New Game (vs player)</button>
-      </div>
-    </div>
 
     <!-- New game menu end -->
 
@@ -37,62 +37,78 @@
 
     <div id="board-container">
 
-  <!-- Header -->
-    <div id="header-el">
-      <div id="hero">
-        <img src="assets/images/icon-x.svg" alt="x icon" class="icon">
-        <img src="assets/images/icon-o.svg" alt="o icon" class="icon">
-      </div>
-      <div id="turn-container">
-        <div id="turn">
-            <img src="assets/images/xmark-solid.svg" class="turn-icon" alt="">
+          <!-- Header -->
+      <div id="header-el">
+        <div id="hero">
+          <img src="assets/images/icon-x.svg" alt="x icon" class="icon">
+          <img src="assets/images/icon-o.svg" alt="o icon" class="icon">
         </div>
-        <p>TURN</p>
+        <div id="turn-container">
+          <div id="turn">
+              <img src="assets/images/xmark-solid.svg" class="turn-icon" alt="">
+          </div>
+          <p>TURN</p>
+        </div>
+        <img id="restart-btn" src="assets/images/icon-restart.svg" alt="restart" class="btn">
       </div>
-      <img id="restart-btn" src="assets/images/icon-restart.svg" alt="restart" class="btn">
-    </div>
 
-    <!-- Game board -->
+        <!-- Game board -->
 
-    <div id="game-board">
-      <button id="tile-one" class="tile" data-val="1"></button>
-      <button id="tile-two" class="tile" data-val="2"></button>
-      <button id="tile-three" class="tile" data-val="3"></button>
-      <button id="tile-four" class="tile" data-val="4"></button>
-      <button id="tile-five" class="tile" data-val="5"></button>
-      <button id="tile-six" class="tile" data-val="6"></button>
-      <button id="tile-seven" class="tile" data-val="7"></button>
-      <button id="tile-eight" class="tile" data-val="8"></button>
-      <button id="tile-nine" class="tile" data-val="9"></button>
-    </div>
-
-    <div id="scoreboard">
-      <div id="x-box" class="scoreboard-el">
-        <p>X (<span id="x-span"></span>)</p>
-        <p id="x-score" class="scores"></p>
+      <div id="game-board">
+        <button id="tile-one" class="tile" data-val=""></button>
+        <button id="tile-two" class="tile" data-val=""></button>
+        <button id="tile-three" class="tile" data-val=""></button>
+        <button id="tile-four" class="tile" data-val=""></button>
+        <button id="tile-five" class="tile" data-val=""></button>
+        <button id="tile-six" class="tile" data-val=""></button>
+        <button id="tile-seven" class="tile" data-val=""></button>
+        <button id="tile-eight" class="tile" data-val=""></button>
+        <button id="tile-nine" class="tile" data-val=""></button>
       </div>
-      <div id="ties-box" class="scoreboard-el">
-        <p>TIES</p>
-        <p id="total-ties" class="scores"></p>
-      </div>
-      <div id="o-box" class="scoreboard-el">
-        <p>&#9711 (<span id="o-span"></span>)</p>
-        <p id="o-score" class="scores"></p>
-      </div>
-    </div>
 
-    <!-- Restart Confirm Modal -->
-    <div id="confirm-restart">
-      <div id="confirm-restart-box">
-        <p>RESTART GAME?</p>
-        <div id="confirm-restart-btn-box">
-          <button id="cancel-restart-btn" class="btn">NO, CANCEL</button>
-          <button id="confirm-restart-btn" class="btn">YES, RESTART</button>
+      <div id="scoreboard">
+        <div id="x-box" class="scoreboard-el">
+          <p>X (<span id="x-span"></span>)</p>
+          <p id="x-score" class="scores"></p>
+        </div>
+        <div id="ties-box" class="scoreboard-el">
+          <p>TIES</p>
+          <p id="total-ties" class="scores"></p>
+        </div>
+        <div id="o-box" class="scoreboard-el">
+          <p>&#9711 (<span id="o-span"></span>)</p>
+          <p id="o-score" class="scores"></p>
         </div>
       </div>
-    </div>
+
+      <!-- Restart Confirm Modal -->
+      <div id="confirm-restart">
+        <div id="confirm-restart-box">
+          <p>RESTART GAME?</p>
+          <div id="confirm-restart-btn-box">
+            <button id="cancel-restart-btn" class="btn">NO, CANCEL</button>
+            <button id="confirm-restart-btn" class="btn">YES, RESTART</button>
+          </div>
+        </div>
+      </div>
+
+        <!-- Display winner -->
+      <div id="display-winner">
+        <p id="winner-message"></p>
+        <div id="winner-container">
+          <div id="winner">
+
+          </div>
+          <p id="winner-text">TAKES THE ROUND</p>
+        </div>
+        <div id="winner-buttons">
+          <button id="quit-btn">QUIT</button>
+          <button id="next-round-btn">NEXT ROUND</button>
+        </div>
+      </div>
     
-</div>
+      <!-- End board container -->
+  </div>
 
 
 

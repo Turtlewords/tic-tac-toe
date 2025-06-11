@@ -293,6 +293,7 @@ img {
     padding: .5rem;
     flex: 1;
     height: 65px;
+    border-radius: 8px;
 }
 
 #select-o {
