@@ -40,6 +40,7 @@ const confirmRestartBtn = document.querySelector("#confirm-restart-btn");
 const displayWinnerEl = document.querySelector("#display-winner");
 const winnerMessage = document.querySelector("#winner-message");
 const winnerEl = document.querySelector("#winner");
+const winnerText = document.querySelector("#winner-text");
 
 const quitBtn = document.querySelector("#quit-btn");
 const nextRoundBtn = document.querySelector("#next-round-btn");
@@ -58,6 +59,16 @@ vsCpuBtn.addEventListener("click", () => {
     boardContainer.style.display = "flex"
     
 });
+
+vsPlayerBtn.addEventListener("click", () => {
+    if (player1Mark == "") {
+        alert("Please pick player 1's mark!")
+        return;
+    }
+    soloGame = false;
+    mainMenu.style.display = "none";
+    boardContainer.style.display = "flex"
+})
 
 selectX.addEventListener("click", () => {
     player1Mark = "X";
@@ -81,24 +92,36 @@ quitBtn.addEventListener("click", restartGame);
 
 tiles.forEach((tile) => {
     tile.addEventListener("click", (e) => {
+
+        // Multiplayer game
+
         if (!soloGame) {
             if (currentTurn == "X") {
             e.target.innerHTML = `<img src="assets/images/icon-x.svg" alt="x icon" class="icon">`
+            e.target.dataset.val = "X";
             currentTurn = "O"
             turnEl.innerHTML = `<img src="assets/images/o-solid-grey.svg" class="turn-icon" alt="">`
+            checkWinner()
         } else {
             e.target.innerHTML = `
             <img src="assets/images/icon-o.svg" alt="o icon" class="icon">`
+            e.target.dataset.val = "O";
             currentTurn = "X"
             turnEl.innerHTML = `<img src="assets/images/xmark-solid.svg" class="turn-icon" alt="">`
+            checkWinner()
         }
         e.target.disabled = true;
 
         } else {
+
+            // CPU Game
+
             if (currentTurn == "X") {
             e.target.innerHTML = `<img src="assets/images/icon-x.svg" alt="x icon" class="icon">`
+            e.target.dataset.val = "X";
             currentTurn = "O"
             turnEl.innerHTML = `<img src="assets/images/o-solid-grey.svg" class="turn-icon" alt="">`
+            checkWinner()
             setTimeout(cpuMove, 2000);
         } 
         e.target.disabled = true;
@@ -135,14 +158,46 @@ function cpuMove() {
 
     if (player1Mark == "X") {
         tiles[index].innerHTML = `<img src="assets/images/icon-o.svg" alt="o icon" class="icon">`
+        tiles[index].dataset.val = "O";
         currentTurn = "X"
         turnEl.innerHTML = `<img src="assets/images/xmark-solid.svg" class="turn-icon" alt="">`
     } else {
         tiles[index].innerHTML = `<img src="assets/images/icon-x.svg" alt="x icon" class="icon">`
+        tiles[index].dataset.val = "X";
         currentTurn = "O"
         turnEl.innerHTML = `<img src="assets/images/o-solid-grey.svg" class="turn-icon" alt="">`
     }
     tiles[index].disabled = true;
+    checkWinner()
+}
+
+function checkWinner() {
+    let wonGame = false;
+    for (let combo of winCombos) {
+        let pos1 = tiles[combo[0]].dataset.val;
+        let pos2 = tiles[combo[1]].dataset.val;
+        let pos3 = tiles[combo[2]].dataset.val;
+
+        if (pos1 != "" && pos2 != "" && pos3 != "" 
+        && pos1 == pos2 && pos2 == pos3) {
+            if (soloGame) {
+                displaySoloWinner();
+            } else {
+                displayMultiplayerWinner();
+            }
+            wonGame = true;
+            return;
+        }
+    }
+
+    if (!wonGame) {
+        const allTiles = [...tiles].every((tile) => tile.dataset.val != "");
+        if (allTiles) {
+            displayRoundTied();
+        }
+    }
+
+    
 }
 
 
@@ -164,10 +219,12 @@ function restartGame() {
     boardContainer.style.display = "none";
     mainMenu.style.display = "flex";
     player1Mark = "";
-    currentTurn = "X"
+    currentTurn = "X";
     turnEl.innerHTML = `
     <img src="assets/images/xmark-solid.svg" class="turn-icon" alt="">`
-
+    winnerMessage.textContent = "";
+    winnerText.textContent = "";
+    winnerEl.innerHTML = "";
     enableGameboard();
 
     tiles.forEach((tile) => {
@@ -187,6 +244,11 @@ function displaySoloWinner(winner) {
 
 function displayMultiplayerWinner(winner) {
 
+}
+
+function displayRoundTied() {
+    displayWinnerEl.style.display = "flex";
+    winnerText.textContent = "ROUND TIED";
 }
 
 
