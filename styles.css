@@ -197,17 +197,16 @@ main {
 
 /* Restart Modal */
 
-#confirm-restart {
+#confirm-restart, #display-winner {
     height: 100vh;
     background-color: rgba(17, 27, 34, 0.6);
     position: fixed;
     inset: 0;
     display: none;
     align-items: center;
-    
 }
 
-#confirm-restart-box {
+#confirm-restart-box, #display-winner-container {
     color: var(--grey-400);
     background-color: var(--navy-800);
     font-size: 1.5rem;
@@ -224,7 +223,7 @@ main {
     gap: 1.5rem;
 }
 
-#confirm-restart-btn-box {
+#confirm-restart-btn-box, #winner-buttons {
     display: flex;
     gap: 1.5rem;
 }
@@ -237,6 +236,22 @@ main {
     background-color: var(--yellow-200);
     box-shadow: 0 6px var(--yellow-700);
 }
+
+/* Display Winner Modal */
+
+#winner-container {
+    display: flex;
+}
+
+#quit-btn {
+    box-shadow: 0 6px var(--grey-700);
+}
+
+#next-round-btn {
+    background-color: var(--yellow-200);
+    box-shadow: 0 6px var(--yellow-700);
+}
+
 
 
 
@@ -271,7 +286,7 @@ main {
 }
 
 
-#confirm-restart p {
+#confirm-restart p, #display-winner p {
     margin: 0;
 }
 /* Images */

@@ -1,7 +1,7 @@
 // Variables
 
-let player1Mark;
-let player2Mark;
+let player1Mark = "";
+let player2Mark = "";
 let xScore = 0;
 let oScore = 0;
 let ties = 0;
@@ -48,6 +48,10 @@ const tiles = document.querySelectorAll(".tile");
 // Main Menu Event Listeners
 
 vsCpuBtn.addEventListener("click", () => {
+    if (player1Mark == "") {
+        alert("Please pick player 1's mark!")
+        return;
+    }
     soloGame = true;
     mainMenu.style.display = "none";
     boardContainer.style.display = "flex"
@@ -72,6 +76,7 @@ selectO.addEventListener("click", () => {
 restartBtn.addEventListener("click", confirmRestartGame);
 cancelRestartBtn.addEventListener("click", cancelRestartGame);
 confirmRestartBtn.addEventListener("click", restartGame);
+quitBtn.addEventListener("click", restartGame);
 
 tiles.forEach((tile) => {
     tile.addEventListener("click", (e) => {
@@ -109,6 +114,8 @@ function cancelRestartGame() {
 
 function restartGame() {
 
+    selectX.style.backgroundColor = "#1A2A33";
+    selectO.style.backgroundColor = "#A8BFC9";
     
     confirmRestartEl.style.display = "none";
     boardContainer.style.display = "none";
