@@ -241,6 +241,7 @@ main {
 
 #winner-container {
     display: flex;
+    gap: .5rem;
 }
 
 #quit-btn {

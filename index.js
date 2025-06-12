@@ -8,6 +8,8 @@ let ties = 0;
 let currentTurn = "X";
 let soloGame;
 let roundOver = false;
+let wonGame = false;
+
 
 const winCombos = [
     [0, 1, 2], 
@@ -41,6 +43,9 @@ const displayWinnerEl = document.querySelector("#display-winner");
 const winnerMessage = document.querySelector("#winner-message");
 const winnerEl = document.querySelector("#winner");
 const winnerText = document.querySelector("#winner-text");
+const xScoreEl = document.querySelector("#x-score");
+const oScoreEl = document.querySelector("#o-score");
+const tiesEl = document.querySelector("#total-ties");
 
 const quitBtn = document.querySelector("#quit-btn");
 const nextRoundBtn = document.querySelector("#next-round-btn");
@@ -57,6 +62,9 @@ vsCpuBtn.addEventListener("click", () => {
     soloGame = true;
     mainMenu.style.display = "none";
     boardContainer.style.display = "flex"
+    if (player1Mark == "O") {
+        setTimeout(cpuMove, 2000);
+    }
     
 });
 
@@ -68,6 +76,7 @@ vsPlayerBtn.addEventListener("click", () => {
     soloGame = false;
     mainMenu.style.display = "none";
     boardContainer.style.display = "flex"
+
 })
 
 selectX.addEventListener("click", () => {
@@ -123,7 +132,14 @@ tiles.forEach((tile) => {
             turnEl.innerHTML = `<img src="assets/images/o-solid-grey.svg" class="turn-icon" alt="">`
             checkWinner()
             setTimeout(cpuMove, 2000);
-        } 
+        } else {
+            // e.target.innerHTML = `<img src="assets/images/o-solid-grey.svg" class="turn-icon" alt="">`
+            // e.target.dataset.val = "X";
+            // currentTurn = "X"
+            // turnEl.innerHTML = `<img src="assets/images/icon-x.svg" alt="x icon" class="icon">`
+            // checkWinner()
+            // setTimeout(cpuMove, 2000);
+        }
         e.target.disabled = true;
         }
         
@@ -139,6 +155,10 @@ function enableGameboard() {
 }
 
 function cpuMove() {
+    if (wonGame) {
+        return;
+    }
+
     let availableCells = [];
     for (let i = 0; i < tiles.length; i++) {
         if (!tiles[i].disabled) {
@@ -172,7 +192,7 @@ function cpuMove() {
 }
 
 function checkWinner() {
-    let wonGame = false;
+    
     for (let combo of winCombos) {
         let pos1 = tiles[combo[0]].dataset.val;
         let pos2 = tiles[combo[1]].dataset.val;
@@ -180,10 +200,27 @@ function checkWinner() {
 
         if (pos1 != "" && pos2 != "" && pos3 != "" 
         && pos1 == pos2 && pos2 == pos3) {
+            let winningMark;
+            
+            if (pos1 == "X") {
+                    winningMark = "X"
+                    xScore++;
+                    xScoreEl.textContent = xScore;
+                } else {
+                    winningMark = "0"
+                    oScore++;
+                    oScoreEl.textContent = oScore;
+                }
+            
+
             if (soloGame) {
-                displaySoloWinner();
+                let winner = (pos1 == player1Mark) ? "YOU WON!" : "OH NO, YOU LOST";
+                
+                displaySoloWinner(winner, winningMark);
             } else {
-                displayMultiplayerWinner();
+                let winner = (pos1 == player1Mark) ? "PLAYER 1" : "PLAYER 2";
+                
+                displayMultiplayerWinner(winner, winningMark);
             }
             wonGame = true;
             return;
@@ -193,7 +230,10 @@ function checkWinner() {
     if (!wonGame) {
         const allTiles = [...tiles].every((tile) => tile.dataset.val != "");
         if (allTiles) {
+            ties++;
+            tiesEl.textContent = ties;
             displayRoundTied();
+            
         }
     }
 
@@ -217,6 +257,7 @@ function restartGame() {
     
     confirmRestartEl.style.display = "none";
     boardContainer.style.display = "none";
+    displayWinnerEl.style.display = "none";
     mainMenu.style.display = "flex";
     player1Mark = "";
     currentTurn = "X";
@@ -225,6 +266,7 @@ function restartGame() {
     winnerMessage.textContent = "";
     winnerText.textContent = "";
     winnerEl.innerHTML = "";
+    
     enableGameboard();
 
     tiles.forEach((tile) => {
@@ -238,17 +280,35 @@ function endRound() {
     }
 }
 
-function displaySoloWinner(winner) {
+function nextRound() {
 
 }
 
-function displayMultiplayerWinner(winner) {
 
+function displaySoloWinner(victor, victorMark) {
+    winnerMessage.textContent = `${victor }`
+    let icon = (victorMark == "X") ?
+    `<img src="assets/images/icon-x.svg" alt="x icon" class="icon">` :
+    `<img src="assets/images/icon-o.svg" alt="o icon" class="icon">`
+    winnerEl.innerHTML = icon;
+    winnerText.textContent = "TAKES THE ROUND"
+    displayWinnerEl.style.display = "flex";
+}
+
+function displayMultiplayerWinner(victor, victorMark) {
+    winnerMessage.textContent = `${victor } WINS!`
+    let icon = (victorMark == "X") ?
+    `<img src="assets/images/icon-x.svg" alt="x icon" class="icon">` :
+    `<img src="assets/images/icon-o.svg" alt="o icon" class="icon">`
+    winnerEl.innerHTML = icon;
+    winnerText.textContent = "TAKES THE ROUND"
+    displayWinnerEl.style.display = "flex";
 }
 
 function displayRoundTied() {
     displayWinnerEl.style.display = "flex";
     winnerText.textContent = "ROUND TIED";
+
 }
 
 
