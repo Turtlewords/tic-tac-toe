@@ -177,6 +177,8 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 35px;
+
 }
 
 #x-box {
@@ -280,6 +282,7 @@ main {
 .scoreboard-el p {
     margin: 0;
     font-weight: 500;
+
 }
 
 .scores {

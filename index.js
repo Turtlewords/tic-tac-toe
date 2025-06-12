@@ -98,6 +98,7 @@ restartBtn.addEventListener("click", confirmRestartGame);
 cancelRestartBtn.addEventListener("click", cancelRestartGame);
 confirmRestartBtn.addEventListener("click", restartGame);
 quitBtn.addEventListener("click", restartGame);
+nextRoundBtn.addEventListener("click", nextRound);
 
 tiles.forEach((tile) => {
     tile.addEventListener("click", (e) => {
@@ -106,22 +107,26 @@ tiles.forEach((tile) => {
 
         if (!soloGame) {
             if (currentTurn == "X") {
-            e.target.innerHTML = `<img src="assets/images/icon-x.svg" alt="x icon" class="icon">`
-            e.target.dataset.val = "X";
-            currentTurn = "O"
-            turnEl.innerHTML = `<img src="assets/images/o-solid-grey.svg" class="turn-icon" alt="">`
-            checkWinner()
-        } else {
-            e.target.innerHTML = `
-            <img src="assets/images/icon-o.svg" alt="o icon" class="icon">`
-            e.target.dataset.val = "O";
-            currentTurn = "X"
-            turnEl.innerHTML = `<img src="assets/images/xmark-solid.svg" class="turn-icon" alt="">`
-            checkWinner()
-        }
-        e.target.disabled = true;
+                e.target.innerHTML = `<img src="assets/images/icon-x.svg" alt="x icon" class="icon">`
+                e.target.dataset.val = "X";
+                currentTurn = "O"
+                turnEl.innerHTML = `<img src="assets/images/o-solid-grey.svg" class="turn-icon" alt="">`
+                checkWinner()
+            } else {
+                e.target.innerHTML = `
+                <img src="assets/images/icon-o.svg" alt="o icon" class="icon">`
+                e.target.dataset.val = "O";
+                currentTurn = "X"
+                turnEl.innerHTML = `<img src="assets/images/xmark-solid.svg" class="turn-icon" alt="">`
+                checkWinner()
+            }
+            e.target.disabled = true;
 
         } else {
+
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // FIX CPU GAME FOR WHEN PLAYER 1 PICKS "O"
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
             // CPU Game
 
@@ -166,15 +171,8 @@ function cpuMove() {
         }
     }
 
-    console.log("Avialable cells: " + availableCells);
-    
     let random = Math.floor(Math.random() * availableCells.length);
-
-    console.log("Random: " + random)
-
     let index = availableCells[random];
-
-    console.log("Index: " + index)
 
     if (player1Mark == "X") {
         tiles[index].innerHTML = `<img src="assets/images/icon-o.svg" alt="o icon" class="icon">`
@@ -216,11 +214,17 @@ function checkWinner() {
             if (soloGame) {
                 let winner = (pos1 == player1Mark) ? "YOU WON!" : "OH NO, YOU LOST";
                 
-                displaySoloWinner(winner, winningMark);
+
+                setTimeout(() => {
+                    displaySoloWinner(winner, winningMark)
+                }, 1500)
+                
             } else {
                 let winner = (pos1 == player1Mark) ? "PLAYER 1" : "PLAYER 2";
                 
-                displayMultiplayerWinner(winner, winningMark);
+                setTimeout(() => {
+                    displayMultiplayerWinner(winner, winningMark)
+                }, 1500);
             }
             wonGame = true;
             return;
@@ -232,7 +236,7 @@ function checkWinner() {
         if (allTiles) {
             ties++;
             tiesEl.textContent = ties;
-            displayRoundTied();
+            setTimeout(displayRoundTied, 1500);
             
         }
     }
@@ -252,9 +256,10 @@ function cancelRestartGame() {
 
 function restartGame() {
 
+    wonGame = false;
     selectX.style.backgroundColor = "#1A2A33";
     selectO.style.backgroundColor = "#A8BFC9";
-    
+    soloGame = null;
     confirmRestartEl.style.display = "none";
     boardContainer.style.display = "none";
     displayWinnerEl.style.display = "none";
@@ -266,12 +271,21 @@ function restartGame() {
     winnerMessage.textContent = "";
     winnerText.textContent = "";
     winnerEl.innerHTML = "";
-    
+    tiesEl.textContent= "";
+    xScoreEl.textContent = "";
+    oScoreEl.textContent = ""
+
+    ties = 0;
+    xScore = 0;
+    oScore = 0;
+
     enableGameboard();
 
     tiles.forEach((tile) => {
         tile.innerHTML = "";
+        tile.dataset.val = "";
     })
+    
 }
 
 function endRound() {
@@ -281,7 +295,19 @@ function endRound() {
 }
 
 function nextRound() {
+    wonGame = false;
+    displayWinnerEl.style.display = "none";
+    enableGameboard();
 
+
+
+    tiles.forEach((tile) => {
+        tile.innerHTML = "";
+        tile.dataset.val = "";
+    })
+    currentTurn = "X";
+    turnEl.innerHTML = `
+    <img src="assets/images/xmark-solid.svg" class="turn-icon" alt="">`
 }
 
 
@@ -306,7 +332,9 @@ function displayMultiplayerWinner(victor, victorMark) {
 }
 
 function displayRoundTied() {
+    winnerMessage.textContent = "";
     displayWinnerEl.style.display = "flex";
+    winnerEl.innerHTML = "";
     winnerText.textContent = "ROUND TIED";
 
 }
