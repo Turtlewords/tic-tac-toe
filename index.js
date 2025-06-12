@@ -46,6 +46,8 @@ const winnerText = document.querySelector("#winner-text");
 const xScoreEl = document.querySelector("#x-score");
 const oScoreEl = document.querySelector("#o-score");
 const tiesEl = document.querySelector("#total-ties");
+const xPlayerEl = document.querySelector("#x-player");
+const oPlayerEl = document.querySelector("#o-player");
 
 const quitBtn = document.querySelector("#quit-btn");
 const nextRoundBtn = document.querySelector("#next-round-btn");
@@ -62,11 +64,18 @@ vsCpuBtn.addEventListener("click", () => {
     soloGame = true;
     mainMenu.style.display = "none";
     boardContainer.style.display = "flex"
-    if (player1Mark == "O") {
+    if (player1Mark == "X") {
+        xPlayerEl.textContent = "YOU";
+        oPlayerEl.textContent = "CPU";
+    } else {
+        xPlayerEl.textContent = "CPU";
+        oPlayerEl.textContent = "YOU";
         setTimeout(cpuMove, 2000);
     }
     
 });
+
+
 
 vsPlayerBtn.addEventListener("click", () => {
     if (player1Mark == "") {
@@ -76,6 +85,13 @@ vsPlayerBtn.addEventListener("click", () => {
     soloGame = false;
     mainMenu.style.display = "none";
     boardContainer.style.display = "flex"
+    if (player1Mark == "X") {
+        xPlayerEl.textContent = "P1";
+        oPlayerEl.textContent = "P2";
+    } else {
+        xPlayerEl.textContent = "P2";
+        oPlayerEl.textContent = "P1";
+    }
 
 })
 
@@ -138,12 +154,12 @@ tiles.forEach((tile) => {
             checkWinner()
             setTimeout(cpuMove, 2000);
         } else {
-            // e.target.innerHTML = `<img src="assets/images/o-solid-grey.svg" class="turn-icon" alt="">`
-            // e.target.dataset.val = "X";
-            // currentTurn = "X"
-            // turnEl.innerHTML = `<img src="assets/images/icon-x.svg" alt="x icon" class="icon">`
-            // checkWinner()
-            // setTimeout(cpuMove, 2000);
+            e.target.innerHTML = `<img src="assets/images/icon-o.svg" class="icon" alt="">`
+            e.target.dataset.val = "O";
+            currentTurn = "X"
+            turnEl.innerHTML = `<img src="assets/images/xmark-solid.svg" alt="x icon" class="turn-icon">`
+            checkWinner()
+            setTimeout(cpuMove, 2000);
         }
         e.target.disabled = true;
         }
@@ -203,11 +219,17 @@ function checkWinner() {
             if (pos1 == "X") {
                     winningMark = "X"
                     xScore++;
-                    xScoreEl.textContent = xScore;
+                    setTimeout(() => {
+                        xScoreEl.textContent = xScore;
+                    }, 1500)
+                    
                 } else {
                     winningMark = "0"
                     oScore++;
-                    oScoreEl.textContent = oScore;
+                    setTimeout(() => {
+                        oScoreEl.textContent = oScore;
+                    }, 1500)
+                    
                 }
             
 
@@ -235,8 +257,11 @@ function checkWinner() {
         const allTiles = [...tiles].every((tile) => tile.dataset.val != "");
         if (allTiles) {
             ties++;
+            
+            setTimeout(() => {
+            displayRoundTied();
             tiesEl.textContent = ties;
-            setTimeout(displayRoundTied, 1500);
+            },1500);
             
         }
     }
@@ -273,7 +298,9 @@ function restartGame() {
     winnerEl.innerHTML = "";
     tiesEl.textContent= "";
     xScoreEl.textContent = "";
-    oScoreEl.textContent = ""
+    oScoreEl.textContent = "";
+    xPlayerEl.textContent = "";
+    oPlayerEl.textContent = "";
 
     ties = 0;
     xScore = 0;
@@ -308,6 +335,10 @@ function nextRound() {
     currentTurn = "X";
     turnEl.innerHTML = `
     <img src="assets/images/xmark-solid.svg" class="turn-icon" alt="">`
+
+    if (soloGame == true && player1Mark == "O") {
+        setTimeout(cpuMove, 2000);
+    }
 }
 
 

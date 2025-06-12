@@ -134,6 +134,7 @@ main {
     gap: .5rem;
     border-radius: 12px;
     padding: .5rem;
+    box-shadow: 0 6px var(--navy-1000);
 }
 
 #turn {
@@ -143,7 +144,7 @@ main {
 
 #restart-btn {
     background-color: var(--grey-400);
-    box-shadow: 0 10px var(--grey-700);
+    box-shadow: 0 6px var(--grey-700);
 }
 
 #game-board {
@@ -178,6 +179,7 @@ main {
     flex-direction: column;
     align-items: center;
     height: 35px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
 }
 
@@ -281,6 +283,7 @@ main {
 
 .scoreboard-el p {
     margin: 0;
+    font-size: .8rem;
     font-weight: 500;
 
 }
