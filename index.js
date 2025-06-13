@@ -53,6 +53,7 @@ const quitBtn = document.querySelector("#quit-btn");
 const nextRoundBtn = document.querySelector("#next-round-btn");
 
 const tiles = document.querySelectorAll(".tile");
+const tileIcons = document.querySelectorAll(".tile-icon");
 
 // Main Menu Event Listeners
 
@@ -117,6 +118,57 @@ quitBtn.addEventListener("click", restartGame);
 nextRoundBtn.addEventListener("click", nextRound);
 
 
+// !!!!!!!!!!!!!!!!!!!!!!!!!
+// FIGURE OUT TILE HOVER EFFECTS
+
+
+// tiles.forEach((tile) => {
+//     tile.addEventListener("mouseover", (e) => {
+//         if (!e.target.disabled) {
+//             if (currentTurn == "X") {
+//                 e.target.innerHTML = `<img src="assets/images/icon-x-outline.svg" alt="x icon" class="icon outline-x">`
+//             } else {
+//                 e.target.innerHTML = `<img src="assets/images/icon-o-outline.svg" alt="o icon" class="icon outline-o">`
+//             }
+//         } 
+//     })
+// })
+
+// tiles.forEach((tile) => {
+//     tile.addEventListener("mouseout", (e) => {
+//         if (!e.target.disabled) {
+//             e.target.innerHTML = "";   
+//         } 
+//     })
+// })
+
+// EVENT DELEGATION EXPERIMENT
+
+// document.addEventListener("mouseover", (e) => {
+//     const target = e.target.closest(".tile-icon");
+
+//     if (target) {
+//         if (!target.disabled) {
+//             if (currentTurn == "X") {
+//                 target.innerHTML = `<img src="assets/images/icon-x-outline.svg" alt="x icon" class="icon outline-x">`
+//             } else {
+//                 target.innerHTML = `<img src="assets/images/icon-o-outline.svg" alt="o icon" class="icon outline-o">`
+//             }
+//         } 
+//     }
+// })
+
+// document.addEventListener("mouseout", (e) => {
+//     const target = e.target.closest(".tile-icon");
+
+//     if (target) {
+//         if (!target.disabled) {
+//             target.innerHTML = "";
+//         } 
+//     }
+// })
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 tiles.forEach((tile) => {
