@@ -116,6 +116,9 @@ confirmRestartBtn.addEventListener("click", restartGame);
 quitBtn.addEventListener("click", restartGame);
 nextRoundBtn.addEventListener("click", nextRound);
 
+
+
+
 tiles.forEach((tile) => {
     tile.addEventListener("click", (e) => {
 
@@ -214,11 +217,21 @@ function checkWinner() {
 
         if (pos1 != "" && pos2 != "" && pos3 != "" 
         && pos1 == pos2 && pos2 == pos3) {
+            
+            
+
             let winningMark;
             
             if (pos1 == "X") {
                     winningMark = "X"
                     xScore++;
+                    tiles[combo[0]].style.backgroundColor = "#65E9E4"
+                    tiles[combo[1]].style.backgroundColor = "#65E9E4"
+                    tiles[combo[2]].style.backgroundColor = "#65E9E4"
+
+                    tiles[combo[0]].innerHTML = `<img src="assets/images/icon-x-outline.svg" alt="x icon" class="icon outline-x">`
+                    tiles[combo[1]].innerHTML = `<img src="assets/images/icon-x-outline.svg" alt="x icon" class="icon outline-x">`
+                    tiles[combo[2]].innerHTML = `<img src="assets/images/icon-x-outline.svg" alt="x icon" class="icon outline-x">`
                     setTimeout(() => {
                         xScoreEl.textContent = xScore;
                     }, 1500)
@@ -226,6 +239,13 @@ function checkWinner() {
                 } else {
                     winningMark = "0"
                     oScore++;
+                    tiles[combo[0]].style.backgroundColor = "#FFC860"
+                    tiles[combo[1]].style.backgroundColor = "#FFC860"
+                    tiles[combo[2]].style.backgroundColor = "#FFC860"
+
+                    tiles[combo[0]].innerHTML = `<img src="assets/images/icon-o-outline.svg" alt="o icon" class="icon outline-o">`
+                    tiles[combo[1]].innerHTML = `<img src="assets/images/icon-o-outline.svg" alt="o icon" class="icon outline-o">`
+                    tiles[combo[2]].innerHTML = `<img src="assets/images/icon-o-outline.svg" alt="o icon" class="icon outline-o">`
                     setTimeout(() => {
                         oScoreEl.textContent = oScore;
                     }, 1500)
@@ -312,6 +332,7 @@ function restartGame() {
     tiles.forEach((tile) => {
         tile.innerHTML = "";
         tile.dataset.val = "";
+        tile.style.backgroundColor = "#1F3641"
     })
     
 }
@@ -332,6 +353,7 @@ function nextRound() {
     tiles.forEach((tile) => {
         tile.innerHTML = "";
         tile.dataset.val = "";
+        tile.style.backgroundColor = "#1F3641"
     })
     currentTurn = "X";
     turnEl.innerHTML = `
@@ -372,6 +394,17 @@ function displayRoundTied() {
     winnerText.textContent = "ROUND TIED";
 
 }
+
+// function debounceTimeout(func, timeout = 1500) {
+
+//     let timer;
+//     return (...args) => {
+//         clearTimeout(timeout);
+//         timer = setTimeout(() => {
+//             func(...args);
+//         }, timeout);
+//     }
+// }
 
 
 

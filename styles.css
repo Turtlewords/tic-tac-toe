@@ -358,6 +358,16 @@ img {
     opacity: 0.7;
 }
 
+.outline-o {
+    background-color: var(--navy-800);
+    padding: 0;
+}
+
+.outline-x {
+    background-color: var(--navy-800);
+    padding: 0;
+}
+
 #winner {
     display: flex;
     align-items: center;
