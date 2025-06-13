@@ -301,6 +301,7 @@ function restartGame() {
     oScoreEl.textContent = "";
     xPlayerEl.textContent = "";
     oPlayerEl.textContent = "";
+    winnerText.style.color = "#DBE8ED"
 
     ties = 0;
     xScore = 0;
@@ -349,6 +350,7 @@ function displaySoloWinner(victor, victorMark) {
     `<img src="assets/images/icon-o.svg" alt="o icon" class="icon">`
     winnerEl.innerHTML = icon;
     winnerText.textContent = "TAKES THE ROUND"
+    winnerText.style.color = (victorMark == "X") ? "#31C3BD" : "#FFC860";
     displayWinnerEl.style.display = "flex";
 }
 
@@ -359,6 +361,7 @@ function displayMultiplayerWinner(victor, victorMark) {
     `<img src="assets/images/icon-o.svg" alt="o icon" class="icon">`
     winnerEl.innerHTML = icon;
     winnerText.textContent = "TAKES THE ROUND"
+    winnerText.style.color = (victorMark == "X") ? "#31C3BD" : "#FFC860";
     displayWinnerEl.style.display = "flex";
 }
 
